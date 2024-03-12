@@ -9,7 +9,7 @@ int main()
 	scanf( "%d", &a);
 	switch (a)
 	{
-		case 1: printf("Winter"); break;
+		case 1:
 		case 2: printf("Winter"); break;
 		case 3: printf("Spring"); break;
 		case 4: printf("Spring"); break;
