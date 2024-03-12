@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 #include <locale.h>
 
 int main()
@@ -16,13 +15,13 @@ int main()
 	{
 		n = i % 16;
 		i = i/16;
-		save_dec[k++] = hex[n];
+		save_dec[k] = hex[n];
+		k++;
 		z++;
 	}
-	printf("Ваше число в шестнадцатеричной системе счисления: ");
-	for( int a = 0;	a <= z; a++)
+	printf("Ваше число в шестнадцатеричной системе счисления: \n");
+	for( int a = z;	a >= 0; a--)
 	{
-		strrev(save_dec - a);
 		printf("%c", save_dec[a]);
 	}
 	return 0;
