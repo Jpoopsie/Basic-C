@@ -16,6 +16,7 @@
 #include <locale.h>
 
 int main()
+
 {
 	int a, b;
 	setlocale(LC_ALL, "ru_RU.UTF-8");
