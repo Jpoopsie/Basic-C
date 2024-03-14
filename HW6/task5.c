@@ -15,6 +15,8 @@ int nod(int a, int b)
 int nod(int a, int b)
 {
 	int k = 0;
+	if(a == b)
+		return a;
 	while(a != b)
 	{
 		if (a > b)
