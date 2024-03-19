@@ -21,7 +21,7 @@ int recurs_power(int n, int p)
 int recurs_power(int n, int p)
 {
 	if( p != 0)
-		recurs_power(n * n, p - 1);
+		recurs_power((n * n), p - 1);
 	return n;
 }
 
