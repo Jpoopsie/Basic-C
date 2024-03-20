@@ -8,6 +8,6 @@ int main()
 	printf("Введите 3 числа через пробел: ");
 	scanf("%d %d %d", &a, &b, &c);
 	d = a + b + c;
-	printf("Сумма чисел равна: %d + %d + %d = %d", a, b, c, d);
+	printf("Сумма чисел равна: %d+%d+%d=%d", a, b, c, d);
 	return 0;
 }
