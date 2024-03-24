@@ -22,7 +22,7 @@ void array(int arr[], int n)
 {
 	int fisrtnumber = arr[9];
 	for(int i = n - 1; i >= 0; i--)
-		arr[i + 1] = arr[i];
+		arr[i] = arr[i-1];
 	arr[0] = fisrtnumber;
 	for(int i = 0; i < n; i++)
 		printf("%d ", arr[i]);
