@@ -23,52 +23,30 @@
 #include <stdio.h>
 
 
-void array(int size, int b)
+void array(unsigned long long int number)
 {
-	int arr[size], j = 0;
-	while(b > 0)
+	int arr[10] = {0,}, tpm;
+	if (number == 0)
+		printf("0 1");
+	if (number > 0)
 	{
-		arr[j] = b % 10;
-		b = b / 10;
-		j++;
-	}
-	for(int i = 0; i < size - 1;  i++)
+	while (number > 0)
 	{
-		for(int j = 0; j < size - 1- i; j++)
-		{
-			if(arr[j] > arr[j + 1])
-			{
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-		}
+		tpm = number % 10;
+		arr[tpm]++;
+		number /= 10;
 	}
-	for(int i = 0; i < size; i++)
-		{
-			int count = 1;
-			for(int s = i + 1; s < size; s++)
-			{
-				if(arr[s] == arr[i-1])
-					continue;
-				if(arr[i] == arr[s])
-					count++;
-				else
-					break;
-			}
-			printf("%d %d\n", arr[i], count);
-		}
+	for(int i = 0; i < 10; i++)
+	{
+		if(arr[i] > 0)
+			printf("%d %d\n", i, arr[i]);
 	}
+	}
+}
 
 int main(void)
 {
-	int number, i = 0, k = 0;
-	scanf("%d", &number);
-	k = number;
-	while(number > 0)
-	{	
-		number =  number / 10;
-		i++;
-	}
-	array(i, k);
+	unsigned long long int number = 0;
+	scanf("%llu", &number);
+	array(number);
 }
