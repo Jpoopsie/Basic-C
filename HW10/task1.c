@@ -12,13 +12,28 @@ aab, aab, aab 3*/
 
 #include <stdio.h>
 
-int main(void)
+int main()
 {
-FILE *f;
-int sum = 0, n;
-f = fopen("input.txt", "r");
-while(fscanf (f, "%d", &n) == 1)
-	sum += n;
-fclose(f);
-printf("%d\n", sum);
+	FILE *input;
+	FILE *output;
+	char c, ch[100] = {0,};
+	int i = 0;
+	char count = 0;
+	input = fopen("input.txt", "r");
+	while((c = fgetc(input)) != EOF)
+	{
+		ch[i++] = c;
+		count++;
+	}
+	fclose(input);
+	output = fopen("output.txt", "w");
+	for(int a = 0; a < 3; a++)
+	{
+		for(int b = 0; b < count; b++)
+			fputc(ch[b], output);
+		fputc(' ', output);
+	}
+	fprintf(output, "%d", count);
+	fclose(output);
+    return 0;
 }
