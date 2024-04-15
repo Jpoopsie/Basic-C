@@ -16,7 +16,7 @@ int main()
 {
 	FILE *input, *output;
 	char c, ch[1000];
-	int len = 0, count = 1;
+	int len = 0, count = 0, tmp =  0;
 	input = fopen("input.txt", "r");
 	while((c = fgetc(input)) != EOF)
 	{
@@ -28,16 +28,27 @@ int main()
 	{
 		if(ch[i] == 'C' && ch[i + 1] == 'a' && ch[i + 2] == 'o')
 		{
-			ch[i] = 'L';
-			ch[i + 1] = 'i';
-			ch[i + 2] = 'n';
-			ch[i + 3] = 'g';
 			ch[i + 4] = ' ';
+			tmp++;
+		}
+	}
+	int ch1[count + tmp];
+	for(int i = 0; i < count; i++)
+		ch1[i] = ch[i];
+	for (int i = 0; i < count + tmp; i++)
+	{
+		if(ch1[i] == 'C' && ch1[i + 1] == 'a' && ch1[i + 2] == 'o')
+		{
+			ch1[i] = 'L';
+			ch1[i + 1] = 'i';
+			ch1[i + 2] = 'n';
+			ch1[i + 3] = 'g';
+			ch1[i + 4] = ' ';
 		}
 	}
 	output = fopen("output.txt", "w");
-	for(int i = 0; i < count; i++)
-		fputc(ch[i], output);
+	for(int i = 0; i < count + tmp; i++)
+		fputc(ch1[i], output);
 	fclose(output);
 	return 0;
 }

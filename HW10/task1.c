@@ -31,9 +31,9 @@ int main()
 	{
 		for(int b = 0; b < count; b++)
 			fputc(ch[b], output);
-		fputc(' ', output);
+		fputc(',', output);
 	}
-	fprintf(output, "%d", count);
+	fprintf(output, "%d\n", count);
 	fclose(output);
     return 0;
 }
