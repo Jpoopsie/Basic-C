@@ -20,8 +20,11 @@ int main(void)
 	char ch, str[1000], last;
 	int i = 0, count = 0;
 	input = fopen("input.txt", "r");
-	while((ch = fgetc(input)) != EOF)
+	while((ch = fgetc(input)) != EOF && (ch != '\n'))
+		{
 		str[i++] = ch;
+		count++;
+		}
 	fclose(input);
 	last = str[count - 1];
 	output = fopen("output.txt", "w");

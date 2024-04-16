@@ -16,23 +16,26 @@ int main()
 {
 	FILE *input;
 	FILE *output;
-	char c, ch[100] = {0,};
-	int i = 0;
-	char count = 0;
+	char c, ch[100] = {0};
+	int i = 0, count = 0;
 	input = fopen("input.txt", "r");
-	while((c = fgetc(input)) != EOF)
+	while((c = fgetc(input)) != EOF && (c!= '\n'))
 	{
 		ch[i++] = c;
 		count++;
 	}
 	fclose(input);
 	output = fopen("output.txt", "w");
-	for(int a = 0; a < 3; a++)
+	for(int a = 0; a < 2; a++)
 	{
 		for(int b = 0; b < count; b++)
 			fputc(ch[b], output);
 		fputc(',', output);
+		fputc(' ', output);
 	}
+	for(int b = 0; b < count; b++)
+		fputc(ch[b], output);
+	fputc(' ', output);
 	fprintf(output, "%d\n", count);
 	fclose(output);
     return 0;
