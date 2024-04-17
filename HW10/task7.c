@@ -24,17 +24,17 @@ int main(void)
 	char str[MAX_SIZE] = {0}, ch;
 	FILE *input, *output;
 	input = fopen("input.txt", "r");
-	while((ch = fgetc(input)) != EOF && (ch != '\0'))
-		{
+	while ((ch = fgetc(input)) != EOF && (ch != '\0'))
+	{
 		str[i++] = ch;
 		count++;
-		}
+	}
 	fclose(input);
-	for(int a = 0; a < count; a++)
+	for (int a = 0; a < count; a++)
 	{
-		if(str[a] >= 'a' && str[a] <= 'z')
+		if (str[a] >= 'a' && str[a] <= 'z')
 			small++;
-		else if(str[a] >= 'A' && str[a] <= 'Z')
+		else if (str[a] >= 'A' && str[a] <= 'Z')
 			big++;
 	}
 	output = fopen("output.txt", "w");

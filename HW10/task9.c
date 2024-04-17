@@ -16,13 +16,13 @@ abcdef*/
 
 void duplicates(char arr[], int size)
 {
-	for(int i = 0; i < size; i++)
+	for (int i = 0; i < size; i++)
 	{
-		for(int j = i + 1; j < size; j++)
+		for (int j = i + 1; j < size; j++)
 		{
-			if(arr[i] == arr[j])
+			if (arr[i] == arr[j])
 			{
-				for(int k = j; k < size - 1; k++)
+				for (int k = j; k < size - 1; k++)
 					arr[k] = arr[k + 1];
 				size--;
 				j--;
@@ -37,7 +37,7 @@ int main(void)
 	int count = 0, i = 0;
 	FILE *input, *output;
 	input = fopen("input.txt", "r");
-	while((ch = fgetc(input)) != EOF && (ch != '\0'))
+	while ((ch = fgetc(input)) != EOF && (ch != '\0'))
 	{
 		arr[i++] = ch;
 		count++;
@@ -45,7 +45,7 @@ int main(void)
 	fclose(input);
 	duplicates(arr, count);
 	output = fopen("output.txt", "w");
-	for(int i = 0; i < count; i++)
+	for (int i = 0; i < count; i++)
 		fprintf(output, "%c", arr[i]);
 	fclose(output);
 	return 0;
