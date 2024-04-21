@@ -4,6 +4,7 @@
 	"stm32-for-vscode.armToolchainPath": false,
 	"files.associations": {
 		"stdio.h": "c",
-		"random": "c"
+		"random": "c",
+		"temp_api.h": "c"
 	}
 }
