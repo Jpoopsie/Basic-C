@@ -10,3 +10,7 @@ typedef struct
 	int minute;
 	int temperature;
 } DataTemperature;
+
+void StatisticsOfYear(DataTemperature sensor[], int a);
+
+void StatisticsOfMonth(DataTemperature sensor[], int a, int month);

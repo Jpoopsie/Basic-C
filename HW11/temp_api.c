@@ -1,9 +1,9 @@
 #include "temp_api.h"
 
-void print_help()
+void StatisticsOfYear(DataTemperature sensor[], int a)
 {
-	printf("\nProgram information:\n");
-	printf("-h for help.\n");
-	printf("-f <filename.csv> for loading the specified file.\n");
-	printf("-m <month number> to display statistics for the specified month.\n");
+}
+
+void StatisticsOfMonth(DataTemperature sensor[], int a, int month)
+{
 }
