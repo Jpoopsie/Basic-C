@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+extern FILE *input;
 typedef struct
 {
 	int year;
@@ -11,7 +13,8 @@ typedef struct
 	int temperature;
 } DataTemperature;
 
-void StatisticsOfYear(DataTemperature sensor[], int a);
+
+void AverageMonthly(DataTemperature sensor[], int a, int month);
 
 void StatisticsOfMonth(DataTemperature sensor[], int a, int month);
 

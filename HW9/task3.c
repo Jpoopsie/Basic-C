@@ -21,32 +21,46 @@
 4 4*/
 
 #include <stdio.h>
+#include <stdint.h>
 
 
-void array(unsigned long long int number)
+// void array(unsigned long long int number)
+// {
+// 	int arr[10] = {0,}, tpm;
+// 	// if (number == 0)
+// 	// 	printf("0 1");
+// 	// if (number > 0)
+// 	// {
+// 	// while (number > 0)
+// 	// {
+// 	// 	tpm = number % 10;
+// 	// 	arr[tpm]++;
+// 	// 	number /= 10;
+// 	// }
+// 	// for(int i = 0; i < 10; i++)
+// 	// {
+// 	// 	if(arr[i] > 0)
+// 	// 		printf("%d %d\n", i, arr[i]);
+// 	// }
+// 	}
+// }
+
+int main()
 {
-	int arr[10] = {0,}, tpm;
-	if (number == 0)
-		printf("0 1");
-	if (number > 0)
-	{
-	while (number > 0)
-	{
-		tpm = number % 10;
-		arr[tpm]++;
-		number /= 10;
-	}
-	for(int i = 0; i < 10; i++)
-	{
-		if(arr[i] > 0)
-			printf("%d %d\n", i, arr[i]);
-	}
-	}
-}
+    uint8_t buffer[81]; // для хранения числа в виде
+	buffer[0] = 41;
+	buffer[1] = 42;
+    int i, ch;
+	int qq = &buffer[0];
+	int qqq = buffer;
 
-int main(void)
-{
-	unsigned long long int number = 0;
-	scanf("%llu", &number);
-	array(number);
+    // for (i = 0; (i < 80) && ((ch = getchar()) != EOF)
+    //                     && (ch != '\n'); i++)
+    // {
+    //     buffer[4] = (char) ch;
+    // }
+
+    // Terminate string with a null character
+    // buffer[i] = '\0';
+    printf( "Input was: %s\n", buffer);
 }
