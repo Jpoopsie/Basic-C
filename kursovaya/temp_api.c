@@ -1,10 +1,21 @@
 #include "temp_api.h"
 
-void AverageMonthly(DataTemperature sensor[], int month)
+int CountInMonth(DataTemperature sensor[], int month)
+{
+	int count = 0;
+	for (int i = 0; i < 1000; i++)
+	{
+		if (sensor[i].month == month)
+			count++;
+	}
+	return count;
+}
+
+float AverageMonthly(DataTemperature sensor[], int month)
 {
 	int sum = 0;
 	int count = 0;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		if (sensor[i].month == month)
 		{
@@ -15,7 +26,7 @@ void AverageMonthly(DataTemperature sensor[], int month)
 	if (count > 0)
 	{
 		float average = (float)sum / count;
-		printf("The average temperature for month %d is %.2f degrees Celsius\n", month, average);
+		return average;
 	}
 	else
 	{
@@ -23,10 +34,10 @@ void AverageMonthly(DataTemperature sensor[], int month)
 	}
 }
 
-void MinTempMonthly(DataTemperature sensor[], int month)
+int MinTempMonthly(DataTemperature sensor[], int month)
 {
 	int min = 10000;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		if (sensor[i].month == month)
 		{
@@ -34,13 +45,13 @@ void MinTempMonthly(DataTemperature sensor[], int month)
 				min = sensor[i].temperature;
 		}
 	}
-	printf("The minimal temperature for month %d is %d degrees Celsius\n", month, min);
+	return min;
 }
 
-void MaxTempMonthly(DataTemperature sensor[], int month)
+int MaxTempMonthly(DataTemperature sensor[], int month)
 {
 	int max = -10000;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		if (sensor[i].month == month)
 		{
@@ -48,7 +59,7 @@ void MaxTempMonthly(DataTemperature sensor[], int month)
 				max = sensor[i].temperature;
 		}
 	}
-	printf("The maximum temperature for month %d is %d degrees Celsius\n", month, max);
+	return max;
 }
 
 void AverageYear(DataTemperature sensor[])

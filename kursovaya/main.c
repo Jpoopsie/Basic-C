@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 	/*Вывод справки*/
 
 	DataTemperature sensor[1000] = {0};
-	int opt = 0, month = 0, a = 0;
+	int opt = 0, month = 0;
 	char data[1000];
 	int size = 0;
 	if (argc == 1)
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 		if (sscanf(data, "%d;%d;%d;%d;%d;%d", &sensor[count].year, &sensor[count].month, &sensor[count].day, &sensor[count].hour,
 				   &sensor[count].minute, &sensor[count].temperature) != 6)
 		{
-			printf("Error reading data: %s", data);
+			// printf("Error reading data: %s", data);
 			continue;
 		}
 		count++;
@@ -73,9 +73,9 @@ int main(int argc, char *argv[])
 
 	if (month > 0 && month <= 12)
 	{
-		AverageMonthly(sensor, month);
-		MinTempMonthly(sensor, month);
-		MaxTempMonthly(sensor, month);
+		printf("#  YEAR  MONTH  NuValue  ErValue  MonthAvg  MonthMax  MonthMin\n");
+		printf("1  2021    %d       %d       -       %.2f      %d       %d\n",
+			   month, CountInMonth(sensor, month), AverageMonthly(sensor, month), MaxTempMonthly(sensor, month), MinTempMonthly(sensor, month));
 	}
 	if (month == 0)
 	{
