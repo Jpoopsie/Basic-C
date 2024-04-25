@@ -9,9 +9,9 @@ int main(int argc, char *argv[])
 
 	/*Вывод справки*/
 
-	DataTemperature sensor[1000] = {0};
+	DataTemperature sensor[90000] = {0};
 	int opt = 0, month = 0;
-	char data[1000];
+	char data[100];
 	int size = 0;
 	if (argc == 1)
 	{
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 		printf("Error openning file.\n");
 		return 1;
 	}
-	int count = 0;
+	unsigned long count = 0;
 	while (fgets(data, sizeof(data), input) != NULL)
 	{
 		// printf("Data: %s", data);
@@ -64,7 +64,10 @@ int main(int argc, char *argv[])
 			continue;
 		}
 		count++;
+		// printf("%c", fgets(data, sizeof(data), input));
+		printf("%ld\n", count);
 	}
+	
 	fclose(input);
 
 	/* ===================================================================================================================================== */
@@ -74,7 +77,7 @@ int main(int argc, char *argv[])
 	if (month > 0 && month <= 12)
 	{
 		printf("#  YEAR  MONTH  NuValue  ErValue  MonthAvg  MonthMax  MonthMin\n");
-		printf("1  2021    %d       %d       -       %.2f      %d       %d\n",
+		printf("1  2021    %d      %ld       -       %.2f      %d       %d\n",
 			   month, CountInMonth(sensor, month), AverageMonthly(sensor, month), MaxTempMonthly(sensor, month), MinTempMonthly(sensor, month));
 	}
 	if (month == 0)

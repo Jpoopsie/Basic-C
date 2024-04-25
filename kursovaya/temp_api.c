@@ -1,9 +1,9 @@
 #include "temp_api.h"
 
-int CountInMonth(DataTemperature sensor[], int month)
+unsigned long CountInMonth(DataTemperature sensor[], int month)
 {
-	int count = 0;
-	for (int i = 0; i < 1000; i++)
+	unsigned long count = 0;
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].month == month)
 			count++;
@@ -13,9 +13,9 @@ int CountInMonth(DataTemperature sensor[], int month)
 
 float AverageMonthly(DataTemperature sensor[], int month)
 {
-	int sum = 0;
-	int count = 0;
-	for (int i = 0; i < 1000; i++)
+	long long sum = 0;
+	unsigned long count = 0;
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].month == month)
 		{
@@ -37,7 +37,7 @@ float AverageMonthly(DataTemperature sensor[], int month)
 int MinTempMonthly(DataTemperature sensor[], int month)
 {
 	int min = 10000;
-	for (int i = 0; i < 1000; i++)
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].month == month)
 		{
@@ -51,7 +51,7 @@ int MinTempMonthly(DataTemperature sensor[], int month)
 int MaxTempMonthly(DataTemperature sensor[], int month)
 {
 	int max = -10000;
-	for (int i = 0; i < 1000; i++)
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].month == month)
 		{

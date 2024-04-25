@@ -13,7 +13,7 @@ typedef struct
 	int temperature;
 } DataTemperature;
 
-int CountInMonth(DataTemperature sensor[], int month);
+unsigned long CountInMonth(DataTemperature sensor[], int month);
 
 float AverageMonthly(DataTemperature sensor[], int month);
 
