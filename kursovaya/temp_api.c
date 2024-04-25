@@ -36,7 +36,7 @@ float AverageMonthly(DataTemperature sensor[], int month)
 
 int MinTempMonthly(DataTemperature sensor[], int month)
 {
-	int min = 10000;
+	int min = 99;
 	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].month == month)
@@ -50,7 +50,7 @@ int MinTempMonthly(DataTemperature sensor[], int month)
 
 int MaxTempMonthly(DataTemperature sensor[], int month)
 {
-	int max = -10000;
+	int max = -99;
 	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].month == month)
@@ -87,7 +87,7 @@ float AverageYear(DataTemperature sensor[])
 
 int MinTempYear(DataTemperature sensor[])
 {
-	int min = 10000;
+	int min = 99;
 	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].temperature < min)
@@ -98,7 +98,7 @@ int MinTempYear(DataTemperature sensor[])
 
 int MaxTempYear(DataTemperature sensor[])
 {
-	int max = -10000;
+	int max = -99;
 	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].temperature > max)
