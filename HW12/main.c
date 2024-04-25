@@ -5,6 +5,10 @@
 
 int main(int argc, char *argv[])
 {
+	/* ===================================================================================================================================== */
+
+	/*Вывод справки*/
+
 	DataTemperature sensor[1000] = {0};
 	int opt = 0, month = 0, a = 0;
 	char data[1000];
@@ -27,7 +31,7 @@ int main(int argc, char *argv[])
 			break;
 		case 'm':
 			month = atoi(optarg);
-			if (0 > month || month > 12)
+			if (1 > month || month > 12)
 			{
 				printf("The number cannot be less than 1 and greater than 12.");
 				return 1;
@@ -36,6 +40,11 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
+
+	/* ===================================================================================================================================== */
+
+	/*Чтение из файла*/
+
 	FILE *input;
 	char ch;
 	input = fopen(data, "r");
@@ -49,7 +58,7 @@ int main(int argc, char *argv[])
 	{
 		// printf("Data: %s", data);
 		if (sscanf(data, "%d;%d;%d;%d;%d;%d", &sensor[count].year, &sensor[count].month, &sensor[count].day, &sensor[count].hour,
-					&sensor[count].minute, &sensor[count].temperature) != 6)
+				   &sensor[count].minute, &sensor[count].temperature) != 6)
 		{
 			printf("Error reading data: %s", data);
 			continue;
@@ -57,7 +66,22 @@ int main(int argc, char *argv[])
 		count++;
 	}
 	fclose(input);
-	if(month > 0 && month <= 12)
-		AverageMonthly(sensor, a, month);
+
+	/* ===================================================================================================================================== */
+
+	/*Вывод данных*/
+
+	if (month > 0 && month <= 12)
+	{
+		AverageMonthly(sensor, month);
+		MinTempMonthly(sensor, month);
+		MaxTempMonthly(sensor, month);
+	}
+	if (month == 0)
+	{
+		AverageYear(sensor);
+		MinTempYear(sensor);
+		MaxTempYear(sensor);
+	}
 	return 0;
 }

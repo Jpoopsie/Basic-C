@@ -13,9 +13,16 @@ typedef struct
 	int temperature;
 } DataTemperature;
 
+void AverageMonthly(DataTemperature sensor[], int month);
 
-void AverageMonthly(DataTemperature sensor[], int a, int month);
+void MinTempMonthly(DataTemperature sensor[], int month);
 
-void StatisticsOfMonth(DataTemperature sensor[], int a, int month);
+void MaxTempMonthly(DataTemperature sensor[], int month);
+
+void AverageYear(DataTemperature sensor[]);
+
+void MinTempYear(DataTemperature sensor[]);
+
+void MaxTempYear(DataTemperature sensor[]);
 
 void print_help(void);
