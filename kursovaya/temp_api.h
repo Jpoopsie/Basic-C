@@ -21,10 +21,10 @@ int MinTempMonthly(DataTemperature sensor[], int month);
 
 int MaxTempMonthly(DataTemperature sensor[], int month);
 
-void AverageYear(DataTemperature sensor[]);
+float AverageYear(DataTemperature sensor[]);
 
-void MinTempYear(DataTemperature sensor[]);
+int MinTempYear(DataTemperature sensor[]);
 
-void MaxTempYear(DataTemperature sensor[]);
+int MaxTempYear(DataTemperature sensor[]);
 
 void print_help(void);

@@ -62,11 +62,11 @@ int MaxTempMonthly(DataTemperature sensor[], int month)
 	return max;
 }
 
-void AverageYear(DataTemperature sensor[])
+float AverageYear(DataTemperature sensor[])
 {
-	int sum = 0;
-	int count = 0;
-	for (int i = 0; i < 100; i++)
+	long long sum = 0;
+	unsigned long count = 0;
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].year == 2021)
 		{
@@ -77,7 +77,7 @@ void AverageYear(DataTemperature sensor[])
 	if (count > 0)
 	{
 		float average = (float)sum / count;
-		printf("The average temperature for year is %.2f degrees Celsius\n", average);
+		return average;
 	}
 	else
 	{
@@ -85,26 +85,26 @@ void AverageYear(DataTemperature sensor[])
 	}
 }
 
-void MinTempYear(DataTemperature sensor[])
+int MinTempYear(DataTemperature sensor[])
 {
 	int min = 10000;
-	for (int i = 0; i < 100; i++)
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].temperature < min)
 			min = sensor[i].temperature;
 	}
-	printf("The minimal temperature for year is %d degrees Celsius\n", min);
+	return min;
 }
 
-void MaxTempYear(DataTemperature sensor[])
+int MaxTempYear(DataTemperature sensor[])
 {
 	int max = -10000;
-	for (int i = 0; i < 100; i++)
+	for (unsigned long i = 0; i < 600000; i++)
 	{
 		if (sensor[i].temperature > max)
 			max = sensor[i].temperature;
 	}
-	printf("The maximum temperature for year is %d degrees Celsius\n", max);
+	return max;
 }
 
 void print_help(void)
