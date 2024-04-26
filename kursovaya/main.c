@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 			errors++;
 			monthErrors[sensor[count].month - 1] = errors;
 			// printf("Error reading data: %s", data);
-			printf("%d\n", sensor[count].month);
+			// printf("%d\n", sensor[count].month);
 			continue;
 		}
 		count++;
@@ -112,8 +112,8 @@ int main(int argc, char *argv[])
 			   11, CountInMonth(sensor, 11), monthErrors[10], AverageMonthly(sensor, 11), MaxTempMonthly(sensor, 11), MinTempMonthly(sensor, 11));
 		printf("12 2021   %d    %5ld       %d      %6.2f    %4d      %4d\n",
 			   12, CountInMonth(sensor, 12), monthErrors[11], AverageMonthly(sensor, 12), MaxTempMonthly(sensor, 12), MinTempMonthly(sensor, 12));
+		printf("Year statistics: average is %.2f, max is %d, min is %d", AverageYear(sensor), MaxTempYear(sensor), MinTempYear(sensor));
 	}
-	printf("Year statistics: average is %.2f, max is %d, min is %d", AverageYear(sensor), MaxTempYear(sensor), MinTempYear(sensor));
 	free(sensor);
 	return 0;
 }
