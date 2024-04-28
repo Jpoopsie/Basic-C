@@ -5,6 +5,8 @@
 	"files.associations": {
 		"stdio.h": "c",
 		"random": "c",
-		"temp_api.h": "c"
+		"temp_api.h": "c",
+		"unistd.h": "c",
+		"stdint.h": "c"
 	}
 }

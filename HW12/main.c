@@ -1,53 +1,104 @@
 #include <stdio.h>
-#include <getopt.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 #include "temp_api.h"
+#include <unistd.h>
+
+#define MAXCHAR 100000
 
 int main(int argc, char *argv[])
 {
-	DataTemperature sensor[10] = {0};
-	int opt = 0, i = 0;
-	if (argc == 1)
+
+	int k, m = 0, p = 0, y = 0, i = 0, r = 0;
+	char dir[100], *s;
+	FILE *fp;
+
+	sensor tarr[MAXCHAR];
+
+	// opterr=0;
+
+	while ((p = getopt(argc, argv, "hf:m:y:")) != -1)
 	{
-		print_help();
-		return 0;
-	}
-	while ((opt = getopt(argc, argv, "hf:m:")) != -1)
-	{
-		switch (opt)
+
+		switch (p)
 		{
 		case 'h':
-			print_help();
+			printhelp();
+			return 0;
 			break;
 		case 'f':
-			if (optarg == NULL)
+			strcpy(dir, optarg);
+			break;
+		case 'm':
+			m = atoi(optarg);
+			if (m < 1 || m > 12)
 			{
-				printf("Error: No filename provided.\n");
-				return 1;
-			}
-			FILE *file = fopen(optarg, "r");
-			if (file == NULL)
-			{
-				printf("Error: Could not open file %s.\n", optarg);
-				return 1;
-			}
-			int i = 0;
-			while (i < 100 && fscanf(file, "%d,%d,%d", &sensor[i].year, &sensor[i].month, &sensor[i].temperature) == 3)
-			{
-				i++;
-			}
-			fclose(file);
-			for (int j = 0; j < i; j++)
-			{
-				printf("%d,%d,%d\n", sensor[j].year, sensor[j].month, sensor[j].temperature);
+				printf("incorrect argument value: %s \n", argv[optind - 1]);
+				printf("Try -m 1..12\n");
+				m = 0;
 			}
 			break;
-		default:
-			printf("Error: Invalid option.\n");
-			return 1;
+		case 'y':
+			y = atoi(optarg);
+			if (y < 1 || m > 65535)
+			{
+				printf("incorrect argument value: %s \n", argv[optind - 1]);
+				printf("Try -y 1..65535\n");
+				y = 0;
+			}
+			break;
+		case '?':
+			printf("Unknown argument: %s \n", argv[optind - 1]);
+			printf("Try -h for help\n");
+			// return 0;
 		}
 	}
-	for (int i = 0; i < 100; i++)
+	/////////////////////////////////////////////////////////////////////
+
+	fp = fopen(dir, "r");
+
+	if (fp == NULL)
 	{
-		printf("%d,%d,%d\n", sensor[i].year, sensor[i].month, sensor[i].temperature);
+		printf("error open file\n");
+		return 1;
 	}
+
+	while (!feof(fp))
+	{
+
+		r = fscanf(fp, "%d;%d;%d;%d;%d;%d", &tarr[i].year, &tarr[i].month,
+				   &tarr[i].day, &tarr[i].hour, &tarr[i].min, &tarr[i].temperature);
+
+		if (r < 6)
+		{
+			fgets(s, 100, fp);
+			printf("Error in line number %d\n %s", i + 1, s);
+		}
+		else
+			i++;
+	}
+
+	fclose(fp);
+
+	//////////////////////////////////////////////////////////////////////
+	k = i;
+	// k = sizeof(tarr)/sizeof(tarr[0]) ;
+
+	printf("\n");
+	printf("statistic for");
+	if (m)
+		printf(" %d month ", m);
+	if (y)
+		printf(" %d year", y);
+	printf("\n");
+
+	printf("Tmax %d \n", maxtemp(m, y, k, tarr));
+	printf("Tmin %d \n", mintemp(m, y, k, tarr));
+	printf("Tavg %.2f \n", avgtemp(m, y, k, tarr));
+
+	sortdate(k, tarr);
+
+	// system("PAUSE");
+	return 0;
 }
