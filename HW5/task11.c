@@ -23,7 +23,6 @@ int main()
 {
 	int a, sum, mul, numbers, count;
 	setlocale(LC_ALL, "ru_RU.UTF-8");
-	printf("Введите одно натуральное число большее 10: ");
 	scanf("%d", &a);
 	for(int i = 10; i <= a; i++)
 	{
