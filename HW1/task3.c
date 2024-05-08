@@ -6,7 +6,7 @@ int main()
 	printf("  ***\n");
 	printf(" *****\n");
 	printf("*******\n");
-	printf(" HH HH\n"); 
-	printf(" ZZ ZZ\n");
+	printf(" HHOHH\n"); 
+	printf(" ZZZZZ\n");
 	return 0;
 }
