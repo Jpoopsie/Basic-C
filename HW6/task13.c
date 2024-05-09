@@ -11,7 +11,7 @@ void to_lowercase(char str[])
 			str[i] = str[i] - 'A' + 'a';
 		}
 	}
-.
+}
 
 int main()
 {
