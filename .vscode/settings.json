@@ -7,6 +7,7 @@
 		"random": "c",
 		"temp_api.h": "c",
 		"unistd.h": "c",
-		"stdint.h": "c"
+		"stdint.h": "c",
+		"cmath": "c"
 	}
 }
