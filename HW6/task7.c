@@ -34,8 +34,6 @@ void is_happy_number(int n)
 int main()
 {
 	int n;
-	setlocale(LC_ALL, ".UTF-8");
-	printf("Введите целое не отрицательное число: ");
 	scanf("%d", &n);
 	is_happy_number(n);
 	return 0;
