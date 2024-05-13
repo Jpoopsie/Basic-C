@@ -13,12 +13,12 @@ void recurs(int A, int B)
 			return;
 		recurs(A + 1, B);
 	}
-	else if (A > B - 1)
+	else if (A + 1 > B)
 	{
-		printf("%d ", A);
+		recurs(A, B + 1);
 		if (A == B)
 			return;
-		recurs(A - 1, B);
+		printf("%d ", B);
 	}
 	else
 		return;
