@@ -8,6 +8,7 @@
 		"temp_api.h": "c",
 		"unistd.h": "c",
 		"stdint.h": "c",
-		"cmath": "c"
+		"cmath": "c",
+		"limits": "c"
 	}
 }
