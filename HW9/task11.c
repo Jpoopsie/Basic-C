@@ -7,10 +7,10 @@
 
 void array(int *arr)
 {
-	int count = 1, arr2[10], k = 0;
+	int arr2[10], k = 0;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = i + 1; j < 11; j++)
+		for (int j = i + 1; j < 10; j++)
 		{
 			if (arr[i] == arr[j])
 				arr2[k++] = arr[i];
