@@ -4,28 +4,27 @@
 void reverse_string()*/
 
 #include <stdio.h>
-#include <locale.h>
 
-void reverse(char *str)
+void reverse(char *str, int len)
 {
-	setlocale(LC_ALL, "ru_RU.UTF-8");
-	if (*str)
+	if (len)
 	{
-		reverse(str + 1);
+		reverse(str + 1, len - 1);
 		printf("%c", *str);
 	}
 }
+
 int main()
 {
-	setlocale(LC_ALL, "ru_RU.UTF-8");
 	char a[1000], ch;
 	int i = 0;
-	while (scanf("%c", &ch) == 1)
+	int str_len;
+	while ((ch = getchar()) != '.' && ch != EOF)
 	{
-		if (ch == '.')
-			break;
 		a[i++] = ch;
+		str_len = i;
+		a[str_len] = '\0';
 	}
-	reverse(a);
+	reverse(a, str_len);
 	return 0;
 }
