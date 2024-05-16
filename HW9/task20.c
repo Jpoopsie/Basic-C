@@ -32,9 +32,12 @@ void swap_negmax_last(int size, int a[])
 		}
 		for (int i = 0; i < k; i++) // Ищу максимальный из отрицательных
 		{
-			for (int j = i + 1; j < k; j++) 
-				if (arr[i] < arr[j])
+			for (int j = 0; j < k; j++)
+			{
+				if (max < arr[j])
 					max = arr[j];
+			}
+			break;
 		}
 		for (int i = 0; i < size; i++) // Меняю местами
 		{
@@ -44,23 +47,23 @@ void swap_negmax_last(int size, int a[])
 				a[size - 1] = max;
 			}
 		}
-		for (int i = 0; i < size; i++) // Вывожу в консоль
-			printf("%d ", a[i]);
-		printf("\n");
+		// for (int i = 0; i < size; i++) // Вывожу в консоль
+		// 	printf("%d ", a[i]);
+		// printf("\n");
 	}
 
 	/*Отрицательных чисел нет, вывожу обычный массив*/
-	else if (max == 0)
-	{
-		for (int i = 0; i < size; i++)
-			printf("%d ", a[i]);
-		printf("\n");
-	}
+	// else if (max == 0)
+	// {
+	// 	for (int i = 0; i < size; i++)
+	// 		printf("%d ", a[i]);
+	// 	printf("\n");
+	// }
 }
 
 int main(void)
 {
-	int arr[10] = {1, -2, -3, -4, 5, 6, 7, 8, 9, 10}, size = 10;
+	int arr[10] = {-131, -460, 206, 62, 179, -180, 354, 289, 239, 275}, size = 10;
 	swap_negmax_last(size, arr);
 	return 0;
 }
