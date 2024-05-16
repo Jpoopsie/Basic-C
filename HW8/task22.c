@@ -7,13 +7,16 @@
 void generate_sequence(int n)
 {
 	int count = 1;
-	for (int i = 1; i <= n; i++)
+	if (n > 0)
 	{
-		for (int j = 1; j <= count; j++)
-			printf("%d ", i);
-		count++;
+		for (int i = 1; i <= n; i++)
+		{
+			for (int j = 1; j <= count; j++)
+				printf("%d ", i);
+			count++;
+		}
+		printf("\n");
 	}
-	printf("\n");
 }
 
 int main(void)
