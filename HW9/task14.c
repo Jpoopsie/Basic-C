@@ -9,13 +9,10 @@ void array(int *arr)
 	int arr2[10], count = 1, k = 0;
 	for (int i = 0; i < 10; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		for (int j = i + 1; j < 10; j++)
 		{
-			if (j != i)
-			{
-				if (arr[i] == arr[j])
-					count++;
-			}
+			if (arr[i] == arr[j])
+				count++;
 		}
 		if (count == 1)
 			arr2[k++] = arr[i];
@@ -34,6 +31,8 @@ int main(void)
 		if (i == 10)
 			break;
 	}
+	// for (i = 0; i < 10; i++)
+	// 	printf("%d ", arr[i]);
 	array(arr);
 	return 0;
 }
