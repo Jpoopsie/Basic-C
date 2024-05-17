@@ -12,9 +12,7 @@ void matrix(int (*arr)[5])
 	for (int i = 0; i <= 4; i++)
 	{
 		for (int j = i; j <= i; j++)
-		{
 			sum += arr[i][j];
-		}
 	}
 	printf("%d", sum);
 }
