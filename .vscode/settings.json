@@ -10,6 +10,9 @@
 		"stdint.h": "c",
 		"cmath": "c",
 		"limits": "c",
-		"locale.h": "c"
+		"locale.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c"
 	}
 }
