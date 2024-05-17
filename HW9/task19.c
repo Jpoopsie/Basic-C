@@ -9,30 +9,18 @@
 
 int compression(int a[], int b[], int N)
 {
-	int count = 1, k = 0, arr[100], i = 0;
-	if (a[0] == 1)
+	int count = 0, index = 0;
+	for (int i = 0; i < N; i++)
 	{
-		arr[0] = 0;
-		k = 1;
-	}
-	for (; i < N; i++)
-	{
-		for (int j = i + 1; j < N; j++)
+		if (i == 0 || a[i] != a[i - 1])
 		{
-			if (a[i] == a[j])
-				count++;
-			else
-			{
-				i = j - 1;
-				arr[k++] = count;
-				count = 1;
-				break;
-			}
+			b[index++] = count;
+			count = 0;
 		}
+		count++;
 	}
-	for (int z = 0; z < k; z++)
-		b[z] = arr[z];
-	return b[k];
+	b[index++] = count;
+	return index;
 }
 
 int main(void)
