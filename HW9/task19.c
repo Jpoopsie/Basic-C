@@ -10,17 +10,36 @@
 int compression(int a[], int b[], int N)
 {
 	int count = 0, index = 0;
-	for (int i = 0; i < N; i++)
+	if (a[0] == 1)
 	{
-		if (i == 0 || a[i] != a[i - 1])
+		for (int i = 0; i < N; i++)
 		{
-			b[index++] = count;
-			count = 0;
+			if (i == 0 || a[i] != a[i - 1])
+			{
+				b[index++] = count;
+				count = 0;
+			}
+			count++;
 		}
-		count++;
+		b[index++] = count;
+		return index;
 	}
-	b[index++] = count;
-	return index;
+	else
+	{
+		count = 1;
+		for (int i = 0; i < N - 1; i++)
+		{
+			if (a[i] == a[i + 1])
+				count++;
+			else
+			{
+				b[index++] = count;
+				count = 1;
+			}
+		}
+		b[index++] = count;
+		return index;
+	}
 }
 
 int main(void)
@@ -35,6 +54,6 @@ int main(void)
 	int a[count], b[count];
 	for (int i = 0; i < count; i++)
 		a[i] = array[i];
-	compression(a, b, count);
+	printf("%d", compression(a, b, count));
 	return 0;
 }

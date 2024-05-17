@@ -7,7 +7,7 @@
 
 void string(char *str, int size)
 {
-	int count = 1, k = 0;
+	int count = 1, k = 0, revers = 1, tmp;
 	char text[2000];
 	for (int i = 0; i < size; i++)
 	{
@@ -20,13 +20,28 @@ void string(char *str, int size)
 				text[k++] = str[i];
 				if (count < 10)
 					text[k++] = count + '0';
+				if (count >= 10)
+				{
+					while (count > 0)
+					{
+						tmp = count % 10;
+						count /= 10;
+						revers = revers * 10 + tmp;
+					}
+					while (revers > 1)
+					{
+						text[k++] = revers % 10 + '0';
+						revers /= 10;
+					}
+				}
 				count = 1;
 				i = j - 1;
 				break;
 			}
 		}
 	}
-	printf("%s", text);
+	for (int i = 0; i < k; i++)
+		printf("%c", text[i]);
 }
 
 int main(void)
@@ -39,8 +54,6 @@ int main(void)
 			break;
 		str[s++] = ch;
 	}
-	printf("%s", str);
-	printf("\n");
 	string(str, s);
 	return 0;
 }
