@@ -1,4 +1,5 @@
-/*Три раза
+/*
+Три раза
 В файле input.txt дана строка. Вывести ее в файл output.txt три раза через запятую и показать количество символов в ней.
 Формат входных данных
 Строка из английских букв и пробелов. Не более 100 символов. В конце могут быть незначащие переносы строк.
@@ -19,24 +20,24 @@ int main()
 	char c, ch[100] = {0};
 	int i = 0, count = 0;
 	input = fopen("input.txt", "r");
-	while((c = fgetc(input)) != EOF && (c!= '\n'))
+	while ((c = fgetc(input)) != EOF && (c != '\n'))
 	{
 		ch[i++] = c;
 		count++;
 	}
 	fclose(input);
 	output = fopen("output.txt", "w");
-	for(int a = 0; a < 2; a++)
+	for (int a = 0; a < 2; a++)
 	{
-		for(int b = 0; b < count; b++)
+		for (int b = 0; b < count; b++)
 			fputc(ch[b], output);
 		fputc(',', output);
 		fputc(' ', output);
 	}
-	for(int b = 0; b < count; b++)
+	for (int b = 0; b < count; b++)
 		fputc(ch[b], output);
 	fputc(' ', output);
 	fprintf(output, "%d\n", count);
 	fclose(output);
-    return 0;
+	return 0;
 }
