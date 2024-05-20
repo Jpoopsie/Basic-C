@@ -11,11 +11,9 @@ void generate_sequence(int n)
 	if (n > 0)
 	{
 		for (int i = 1; i <= count; i++)
-		{
 			printf("%d ", count);
-		}
 		count++;
-		generate_sequence(n - count);
+		generate_sequence(n - 1);
 	}
 }
 
