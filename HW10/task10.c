@@ -7,10 +7,10 @@
 
 #include <stdio.h>
 
-int find_number(char *ch)
+int find_number(char *ch, int count)
 {
 	int tmp, number = 0;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < count; i++)
 	{
 		tmp = ch[i] - '0';
 		number = number * 10 + tmp;
@@ -18,22 +18,46 @@ int find_number(char *ch)
 	return number;
 }
 
-void string_number(char *ch)
+void array(char *ch, int count)
 {
-	int i = 0;
-	printf("%d", find_number(ch));
+	FILE *output;
+	int number = find_number(ch, count), tmp = number, i = 0, z = 0, s = 2;
+	char arr[number];
+	printf("%d", number);
+	while (tmp > 0)
+	{
+		if (tmp % 2 == 0)
+		{
+			arr[i++] = 'A' + z;
+			z++;
+		}
+		else
+		{
+			arr[i++] = s + '0';
+			s += 2;
+			if (s == 10)
+				s = 2;
+		}
+		tmp--;
+	}
+	output = fopen("output.txt", "w");
+	for (int b = 0; b < number; b++)
+		fprintf(output, "%c", arr[b]);
+	fclose(output);
 }
 
 int main(void)
 {
 	FILE *input;
-	int i = 0;
+	int i = 0, count = 0;
 	char c, ch[2];
 	input = fopen("input.txt", "r");
 	while ((c = fgetc(input)) != EOF && (c != '\n'))
+	{
 		ch[i++] = c;
+		count++;
+	}
 	fclose(input);
-	printf("\n");
-	string_number(ch);
+	array(ch, count);
 	return 0;
 }
