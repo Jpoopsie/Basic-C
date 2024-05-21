@@ -26,18 +26,19 @@ char *remove_repeating(char *string, int number)
 	int count = 0;
 	char *space = remove_space(string, number);
 	for (int i = 0; i < number; i++)
+		array[count++] = space[i];
+	for (int i = 0; i < count; i++)
 	{
-		int flag = 0;
-		for (int j = 0; j < count; j++)
+		for (int j = i + 1; j < count; j++)
 		{
-			if (space[i] == space[j])
+			if (array[i] == array[j])
 			{
-				flag = 1;
-				break;
+				for (int k = j; k < count - 1; k++)
+					array[k] = array[k + 1];
+				count--;
+				j--;
 			}
 		}
-		if (!flag)
-			array[count++] = space[i];
 	}
 	return array;
 }
