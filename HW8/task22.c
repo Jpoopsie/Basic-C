@@ -7,13 +7,18 @@
 
 void generate_sequence(int n)
 {
-	static int count = 1;
-	if (n > 0)
+	int current_number = 1;
+	int count = 1;
+	for (int i = 1; i <= n; i++)
 	{
-		for (int i = 1; i <= count; i++)
-			printf("%d ", count);
-		count++;
-		generate_sequence(n - 1);
+		printf("%d ", current_number);
+		if (count == current_number)
+		{
+			current_number++;
+			count = 1;
+		}
+		else
+			count++;
 	}
 }
 
