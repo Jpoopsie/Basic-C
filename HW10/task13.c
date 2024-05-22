@@ -71,5 +71,3 @@ int main(void)
 	write_output(string, count);
 	return 0;
 }
-
-/*Доделать Output*/
