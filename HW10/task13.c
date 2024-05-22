@@ -20,7 +20,7 @@ char *remove_space(char *string, int number)
 }
 
 /*Удаление повторяющихся значений*/
-char *remove_repeating(char *string, int number)
+char *remove_repeating(char *string, int number, int *sizeArr)
 {
 	static char array[1000];
 	int count = 0;
@@ -40,7 +40,23 @@ char *remove_repeating(char *string, int number)
 			}
 		}
 	}
+	*sizeArr = count;
 	return array;
+}
+
+/*Запись в ouput file*/
+void write_output(char *string, int number)
+{
+	FILE *output;
+	int size = 0;
+	char *array = remove_repeating(string, number, &size);
+	output = fopen("output.txt", "w");
+	printf("%d\n", size);
+	for (int i = 0; i < size - 1; i++)
+		fprintf(output, "%c", array[i]);
+	fclose(output);
+	for (int i = 0; i < size; i++)
+		printf("%c", array[i]);
 }
 
 int main(void)
@@ -52,15 +68,8 @@ int main(void)
 	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[count++] = ch;
 	fclose(input);
-	for (int i = 0; i < count; i++)
-		printf("%c", string[i]);
-	printf("\n");
-	char *first = remove_space(string, count);
-	for (int i = 0; i < count; i++)
-		printf("%c", first[i]);
-	printf("\n");
-	char *second = remove_repeating(string, count);
-	for (int i = 0; i < count; i++)
-		printf("%c", second[i]);
+	write_output(string, count);
 	return 0;
 }
+
+/*Доделать Output*/
