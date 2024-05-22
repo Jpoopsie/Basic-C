@@ -84,6 +84,7 @@ int main(void)
 	input = fopen("input.txt", "r");
 	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[size++] = ch;
+	fclose(input);
 	write_file(string, size);
 	return 0;
 }
