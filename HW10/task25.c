@@ -39,37 +39,64 @@ int count_stone(char *string, int size)
 int write_stone(int count)
 {
 	int n = 0, k = 1, sum = 0;
-	while (sum != count)
+	if(count < 3)
+		return 1;
+	while (sum < count)
 	{
 		k = n * 1 + 1;
 		n++;
 		sum += k;
 	}
-	return sum;
+	if (sum == count)
+		return n;
+	else
+		return 1;
 }
 
-char *distributor(char *string, int size)
+/*Распределяет ответ*/
+int distributor(char *string, int size)
 {
 	int count = count_stone(string, size);
-	if (count < 3 || count % 2 == 0)
-		return "NO";
+	int n = write_stone(count);
+	return n;
+}
+
+void answer(char *string, int size)
+{
+	FILE *output;
+	output = fopen("output.txt", "w");
+	int number = distributor(string, size);
+	if (number == 1)
+		fprintf(output, "NO");
 	else
 	{
-		char *stone = write_stone(count);
+		for (int i = 1; i <= number; i++)
+		{
+			for (int j = 1; j <= number - i; j++)
+				fprintf(output, " ");
+			for (int j = 1; j <= i; j++)
+				fprintf(output, "* ");
+			fprintf(output, "\n");
+		}
 	}
+	fclose(output);
 }
 
 int main(void)
 {
-	char ch, string[1000];
+	FILE *input;
+	char ch, string[100000];
 	int size = 0;
-	while (scanf("%c", &ch))
-	{
-		if (ch == '\n')
-			break;
+	input = fopen("input.txt", "r");
+	// while (scanf("%c", &ch))
+	// {
+	// 	if (ch == '\n')
+	// 		break;
+	// 	string[size++] = ch;
+	// }
+	while ((ch = fgetc(input)) != EOF)
 		string[size++] = ch;
-	}
-	char *first = distributor(string, size);
-	printf("%s\n", first);
+	fclose(input);
+	answer(string, size);
 	return 0;
 }
