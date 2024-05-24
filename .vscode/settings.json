@@ -17,6 +17,7 @@
 		"*.tcc": "c",
 		"numeric": "c",
 		"cstdlib": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"numbers": "c"
 	}
 }
