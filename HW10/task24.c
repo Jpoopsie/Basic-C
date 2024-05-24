@@ -22,10 +22,10 @@ char *delete_space(char *string, int size, int *sizeArr)
 }
 
 /*Сортировка массива*/
-char *sort_array(char *string, int size)
+char *sort_array(char *string, int size, int *mainArrSize)
 {
 	static char mainArray[1000];
-	char dubleArr[1000], oneArr[1000];
+	char dubleArr[1000] = {'\0'}, oneArr[1000] = {'\0'};
 	int arrSize = 0;
 	char *extArray = delete_space(string, size, &arrSize);
 	for (int i = 0; i < arrSize; i++)
@@ -40,8 +40,6 @@ char *sort_array(char *string, int size)
 			}
 		}
 	}
-	for (int i = 0; i < arrSize; i++)
-		dubleArr[i] = extArray[i];
 	int a = 0, b = arrSize - 1;
 	for (int i = 0; i < arrSize; i++)
 	{
@@ -49,23 +47,82 @@ char *sort_array(char *string, int size)
 		{
 			dubleArr[a++] = extArray[i];
 			dubleArr[b--] = extArray[i + 1];
+			i++;
 		}
 	}
-	
+	int siziDuble = arrSize;
+	for (int i = 0; i < siziDuble; i++)
+	{
+		if (dubleArr[i] == '\0')
+		{
+			for (int j = i; j < siziDuble; j++)
+				dubleArr[j] = dubleArr[j + 1];
+			i--;
+			siziDuble--;
+		}
+	}
+	int count = 1, sizeOne = 0;
+	for (int i = 0; i < arrSize; i++)
+		oneArr[i] = extArray[i];
+	for (int i = 0; i < arrSize; i++)
+	{
+		count = 1;
+		for (int j = i + 1; j < arrSize; j++)
+		{
+			if (extArray[i] == extArray[j])
+			{
+				count++;
+				i++;
+			}
+		}
+		if (count % 2 == 1)
+			oneArr[sizeOne++] = extArray[i];
+	}
+	int mainSize = 0;
+	for (int i = 0; i < siziDuble / 2; i++)
+		mainArray[mainSize++] = dubleArr[i];
+	for (int i = 0; i < sizeOne; i++)
+		mainArray[mainSize++] = oneArr[i];
+	for (int i = siziDuble / 2; i < siziDuble; i++)
+		mainArray[mainSize++] = dubleArr[i];
+	*mainArrSize = mainSize;
+	return mainArray;
+}
+
+void is_palindrom(char *string, int size)
+{
+	int arrSize, count = 0, a = 0;
+	char array[1000];
+	char *mainArray = sort_array(string, size, &arrSize);
+	int b = arrSize - 1;
+	for (int i = 0; i < arrSize; i++)
+		array[i] = mainArray[i];
+	for (int i = 0; i < arrSize / 2; i++)
+	{
+		if (array[a++] == array[b--])
+			count++;
+	}
+	if (count == arrSize / 2 && count >= 1)
+		printf("YES");
+	else
+		printf("NO");
 }
 
 int main(void)
 {
-	int size = 0, arrSize;
+	FILE *input;
+	input = fopen("input.txt", "r");
+	int size = 0;
 	char ch, string[1000];
-	while (scanf("%c", &ch))
-	{
-		if (ch == '\n')
-			break;
+	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[size++] = ch;
-	}
-	char *first = sort_array(string, size);
-	for (int i = 0; i < size; i++)
-		printf("%c", first[i]);
+	fclose(input);
+	// while (scanf("%c", &ch))
+	// {
+	// 	if (ch == '\n')
+	// 		break;
+	// 	string[size++] = ch;
+	// }
+	is_palindrom(string, size);
 	return 0;
 }
