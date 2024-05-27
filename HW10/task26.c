@@ -37,7 +37,7 @@ char *delete_vowel(char *string, int size, int *sizeArr)
 				for (int k = i; k < size; k++)
 					string[k] = string[k + 1];
 				size--;
-				j--;
+				i--;
 			}
 		}
 	}
@@ -102,7 +102,7 @@ char *delete_repeating(char *string, int size, int *arrSize)
 	int sizeArr;
 	char *first = replace_letter(string, size, &sizeArr);
 	int fullSize = 0;
-	static char array[20];
+	static char array[20] = {'\0'};
 	for (int i = 1; i < sizeArr; i++)
 	{
 		if (first[i] == first[i + 1])
@@ -120,18 +120,66 @@ char *delete_repeating(char *string, int size, int *arrSize)
 	return array;
 }
 
+/*Возвращаем правильный массив*/
+char *return_array(char *string, int size, int *arrSize)
+{
+	int sizeArr;
+	char *first = delete_repeating(string, size, &sizeArr);
+	static char array[20];
+	int fullSize = 0;
+	if (sizeArr < 4)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (first[i] == '\0')
+				first[i] = '0';
+		}
+		for (int i = 0; i < 4; i++)
+			array[fullSize++] = first[i];
+	}
+	else if (sizeArr > 4)
+	{
+		for (int i = 0; i < 4; i++)
+			array[fullSize++] = first[i];
+	}
+	else
+	{
+		for (int i = 0; i < 4; i++)
+			array[fullSize++] = first[i];
+	}
+	*arrSize = fullSize;
+	return array;
+}
+
+/*Запись в output file*/
+void write_file(char *string, int size)
+{
+	FILE *output;
+	int sizeArr;
+	char *first = return_array(string, size, &sizeArr);
+	output = fopen("output.txt", "w");
+	for (int i = 0; i < sizeArr; i++)
+		fprintf(output, "%c", first[i]);
+	fclose(output);
+}
+
 int main(void)
 {
-	int size = 0, sizeArr;
+	FILE *input;
+	int size = 0;
 	char ch, string[20];
-	while (scanf("%c", &ch))
-	{
-		if (ch == '\n')
-			break;
+	input = fopen("input.txt", "r");
+	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[size++] = ch;
-	}
-	char *del = delete_repeating(string, size, &sizeArr);
-	for (int i = 0; i < sizeArr; i++)
-		printf("%c", del[i]);
+	// while (scanf("%c", &ch))
+	// {
+	// 	if (ch == '\n')
+	// 		break;
+	// 	string[size++] = ch;
+	// }
+	// char *del = return_array(string, size, &sizeArr);
+	// for (int i = 0; i < sizeArr; i++)
+	// 	printf("%c", del[i]);
+	write_file(string, size);
 	return 0;
 }
