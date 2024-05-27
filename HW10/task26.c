@@ -175,6 +175,8 @@ int main(void)
 	// string[size++] = ch;
 	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[size++] = ch;
+	if (input == NULL)
+		perror("Error open file");
 	fclose(input);
 	// while (scanf("%c", &ch))
 	// {
