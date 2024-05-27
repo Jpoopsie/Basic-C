@@ -99,7 +99,25 @@ char *replace_letter(char *string, int size, int *arrSize)
 /*Удаление повторяющихся цифр*/
 char *delete_repeating(char *string, int size, int *arrSize)
 {
-	
+	int sizeArr;
+	char *first = replace_letter(string, size, &sizeArr);
+	int fullSize = 0;
+	static char array[20];
+	for (int i = 1; i < sizeArr; i++)
+	{
+		if (first[i] == first[i + 1])
+		{
+			for (int j = i; j < sizeArr; j++)
+				first[j] = first[j + 1];
+			sizeArr--;
+			i--;
+		}
+	}
+	array[fullSize++] = first[0];
+	for (int i = 1; i < sizeArr; i++)
+		array[fullSize++] = first[i];
+	*arrSize = fullSize;
+	return array;
 }
 
 int main(void)
@@ -112,7 +130,7 @@ int main(void)
 			break;
 		string[size++] = ch;
 	}
-	char *del = replace_letter(string, size, &sizeArr);
+	char *del = delete_repeating(string, size, &sizeArr);
 	for (int i = 0; i < sizeArr; i++)
 		printf("%c", del[i]);
 	return 0;
