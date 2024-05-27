@@ -173,10 +173,11 @@ int main(void)
 	input = fopen("input.txt", "r");
 	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[size++] = ch;
+	fclose(input);
 	// while (scanf("%c", &ch))
 	// {
 	// 	if (ch == '\n')
-	// 		break;
+	// break;
 	// 	string[size++] = ch;
 	// }
 	// char *del = return_array(string, size, &sizeArr);
