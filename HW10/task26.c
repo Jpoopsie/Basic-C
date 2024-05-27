@@ -171,6 +171,8 @@ int main(void)
 	int size = 0;
 	char ch, string[20];
 	input = fopen("input.txt", "r");
+	// ch = fscanf(input, "%c", &ch);
+	// string[size++] = ch;
 	while ((ch = fgetc(input)) != EOF && (ch != '\n'))
 		string[size++] = ch;
 	fclose(input);
