@@ -26,15 +26,15 @@ implementation → implmnttn → i51455335 → i514535 → i514*/
 char *delete_vowel(char *string, int size, int *sizeArr)
 {
 	int arrSize = 0;
-	char array[100];
+	static char array[100];
 	char deleteArr[8] = {"aehiouwy"};
-	for (int i = 0; i < size; i++)
+	for (int i = 1; i < size; i++)
 	{
 		for (int j = 0; j < 8; j++)
 		{
-			if (string[i] != deleteArr[j])
+			if (string[i] == deleteArr[j])
 			{
-				for (int k = 0; k < size; k++)
+				for (int k = i; k < size; k++)
 					string[k] = string[k + 1];
 				size--;
 				j--;
@@ -43,11 +43,68 @@ char *delete_vowel(char *string, int size, int *sizeArr)
 	}
 	for (int i = 0; i < size; i++)
 		array[arrSize++] = string[i];
+	*sizeArr = size;
+	return array;
+}
+
+/*Замена букв цифрами*/
+char *replace_letter(char *string, int size, int *arrSize)
+{
+	static char array[20];
+	int sizeArr;
+	char *first = delete_vowel(string, size, &sizeArr);
+	for (int i = 1; i < sizeArr; i++)
+	{
+		switch (first[i])
+		{
+		case 'b':
+		case 'f':
+		case 'p':
+		case 'v':
+			first[i] = '1';
+			break;
+		case 'c':
+		case 'g':
+		case 'j':
+		case 'k':
+		case 'q':
+		case 's':
+		case 'x':
+		case 'z':
+			first[i] = '2';
+			break;
+		case 'd':
+		case 't':
+			first[i] = '3';
+			break;
+		case 'l':
+			first[i] = '4';
+			break;
+		case 'm':
+		case 'n':
+			first[i] = '5';
+			break;
+		case 'r':
+			first[i] = '6';
+			break;
+		}
+	}
+	array[0] = first[0];
+	for (int i = 1; i < sizeArr; i++)
+		array[i] = first[i];
+	*arrSize = sizeArr;
+	return array;
+}
+
+/*Удаление повторяющихся цифр*/
+char *delete_repeating(char *string, int size, int *arrSize)
+{
+	
 }
 
 int main(void)
 {
-	int size = 0;
+	int size = 0, sizeArr;
 	char ch, string[20];
 	while (scanf("%c", &ch))
 	{
@@ -55,6 +112,8 @@ int main(void)
 			break;
 		string[size++] = ch;
 	}
-	char *del = delete_vowel(string, size, 0);
+	char *del = replace_letter(string, size, &sizeArr);
+	for (int i = 0; i < sizeArr; i++)
+		printf("%c", del[i]);
 	return 0;
 }
