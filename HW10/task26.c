@@ -38,6 +38,7 @@ char *delete_vowel(char *string, int size, int *sizeArr)
 					string[k] = string[k + 1];
 				size--;
 				i--;
+				break;
 			}
 		}
 	}
@@ -166,6 +167,7 @@ void write_file(char *string, int size)
 int main(void)
 {
 	FILE *input;
+	// int sizeArr;
 	int size = 0;
 	char ch, string[20];
 	input = fopen("input.txt", "r");
