@@ -19,7 +19,7 @@ int main()
 	int i = 0, count = 0;
 	while (scanf("%c", &ch) == 1)
 	{
-		if (ch == '\.')
+		if (ch == '.')
 			break;
 		str[i++] = ch;
 		count++;
