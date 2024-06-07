@@ -56,8 +56,8 @@ void registrations(void)
 void login(void)
 {
 	FILE *input;
-	int size = 0, count = 0;
-	char string[1000], ch, txt[4] = ".txt";
+	int size = 0, sizetxt = 0, count = 0;
+	char string[1000], outtxt[1000], buffer[1000] = {'\0'}, ch, txt[4] = ".txt";
 	printf("Login: ");
 	while (scanf("%c", &ch))
 	{
@@ -67,16 +67,86 @@ void login(void)
 			break;
 		if (ch != '\n')
 			string[size++] = ch;
+		outtxt[sizetxt++] = ch;
 	}
 	for (int i = 0; i < 4; i++)
 		string[size++] = txt[i];
 	input = fopen(string, "r");
 	if (input == NULL)
-		printf("No user with this login was found\n");
+		printf("No user with this login was found.\n");
 	else
 	{
 		printf("Password: ");
-		
+		while (scanf("%c", &ch))
+		{
+			if (ch == '\n')
+				break;
+			if (ch != '\n')
+				outtxt[sizetxt++] = ch;
+		}
+		fread(buffer, 1, sizetxt, input);
+		for (int i = 0; i < sizetxt; i++)
+		{
+			if (buffer[i] != outtxt[i + 1])
+			{
+				printf("The password is incorrect.\n");
+				break;
+			}
+			if (i == sizetxt - 1)
+				printf("Login successful.\n");
+		}
+	}
+	fclose(input);
+}
+
+void remove_account(void)
+{
+	FILE *input;
+	int size = 0, sizetxt = 0, count = 0;
+	char string[1000], outtxt[1000], buffer[1000] = {'\0'}, ch, txt[4] = ".txt";
+	printf("Login: ");
+	while (scanf("%c", &ch))
+	{
+		if (ch == '\n')
+			count++;
+		if (count == 2)
+			break;
+		if (ch != '\n')
+		{
+			string[size++] = ch;
+			outtxt[sizetxt++] = ch;
+		}
+	}
+	for (int i = 0; i < 4; i++)
+		string[size++] = txt[i];
+	input = fopen(string, "r");
+	if (input == NULL)
+		printf("No user with this login was found.\n");
+	else
+	{
+		printf("Password: ");
+		while (scanf("%c", &ch))
+		{
+			if (ch == '\n')
+				break;
+			if (ch != '\n')
+				outtxt[sizetxt++] = ch;
+		}
+		fread(buffer, 1, sizetxt, input);
+		for (int i = 0; i < sizetxt; i++)
+		{
+			if (buffer[i] != outtxt[i + 1])
+			{
+				printf("The password is incorrect.\n");
+				break;
+			}
+			if (i == sizetxt - 1)
+			{
+				fclose(input);
+				remove(string);
+				printf("Account successfully deleted.\n");
+			}
+		}
 	}
 }
 
@@ -87,6 +157,8 @@ void distributor(char letter)
 	if (letter == '2')
 		login();
 	if (letter == '3')
+		remove_account();
+	if (letter == '4')
 		about_program();
 }
 
@@ -96,7 +168,8 @@ int main(void)
 	printf("Select your action.\n");
 	printf("1. Registrations.\n");
 	printf("2. Login.\n");
-	printf("3. About programm.\n\n");
+	printf("3. Remove account.\n");
+	printf("4. About programm.\n\n");
 	printf("Your choose: ");
 	for (int i = 0; i < 1; i++)
 		scanf("%c", &letter);
