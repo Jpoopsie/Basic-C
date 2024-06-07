@@ -17,28 +17,52 @@ void registrations(void)
 	FILE *input;
 	int size = 0, count = 0;
 	char ch, string[1000], txt[4] = ".txt";
+	printf("Login: ");
 	while (scanf("%c", &ch))
 	{
 		if (ch == '\n')
 			count++;
 		if (count == 2)
 			break;
-		string[size++] = ch;
+		if (ch != '\n')
+			string[size++] = ch;
 	}
 	for (int i = 0; i < 4; i++)
 		string[size++] = txt[i];
-	for (int i = 0; i < size; i++)
-		printf("%c", string[i]);
-	input = fopen(string, "w");
-	for(int i = 0; i < size - 4; i++)
-		fprintf(input, "%c", string[i]);
-	fclose(input);
+	input = fopen(string, "r");
+	if (input != NULL)
+		printf("A user with this login already exists.\n");
+	else
+	{
+		input = fopen(string, "w");
+		for (int i = 0; i < size - 4; i++)
+			fprintf(input, "%c", string[i]);
+		printf("Password: ");
+		size = 0;
+		while (scanf("%c", &ch))
+		{
+			if (ch == '\n')
+				break;
+			if (ch != '\n')
+				string[size++] = ch;
+		}
+		for (int i = 0; i < size; i++)
+			fprintf(input, "%c", string[i]);
+		fclose(input);
+		printf("\nAccount successfully created.");
+	}
+}
+
+void login(void)
+{
 }
 
 void distributor(char letter)
 {
 	if (letter == '1')
 		registrations();
+	if (letter == '2')
+		login();
 	if (letter == '3')
 		about_program();
 }
