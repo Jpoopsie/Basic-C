@@ -20,6 +20,8 @@
 		"algorithm": "c",
 		"numbers": "c",
 		"time.h": "c",
-		"pthread_time.h": "c"
+		"pthread_time.h": "c",
+		"conio.h": "c",
+		"windows.h": "c"
 	}
 }
