@@ -18,6 +18,8 @@
 		"numeric": "c",
 		"cstdlib": "c",
 		"algorithm": "c",
-		"numbers": "c"
+		"numbers": "c",
+		"time.h": "c",
+		"pthread_time.h": "c"
 	}
 }
