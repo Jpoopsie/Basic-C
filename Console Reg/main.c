@@ -9,7 +9,7 @@ void about_program(void)
 	printf("The person's login and password are written to the txt file.\n");
 	printf("The programme checks if there is a person with the given login and password in the system.\n");
 	printf("If the person with the given login is not registered, the programme offers to register.\n");
-	printf("If you are registered but entered an incorrect password, you will get an error.\n");
+	printf("If you are registered but entered an incorrect password, you will get an error.\n\n");
 }
 
 void registrations(void)
