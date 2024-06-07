@@ -112,10 +112,8 @@ void remove_account(void)
 		if (count == 2)
 			break;
 		if (ch != '\n')
-		{
 			string[size++] = ch;
-			outtxt[sizetxt++] = ch;
-		}
+		outtxt[sizetxt++] = ch;
 	}
 	for (int i = 0; i < 4; i++)
 		string[size++] = txt[i];
