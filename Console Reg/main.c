@@ -48,7 +48,7 @@ void registrations(void)
 		}
 		for (int i = 0; i < size; i++)
 			fprintf(input, "%c", string[i]);
-		printf("\nAccount successfully created.");
+		printf("Account successfully created.\n");
 	}
 	fclose(input);
 }
@@ -163,14 +163,20 @@ void distributor(char letter)
 int main(void)
 {
 	char letter;
-	printf("Select your action.\n");
-	printf("1. Registrations.\n");
-	printf("2. Login.\n");
-	printf("3. Remove account.\n");
-	printf("4. About programm.\n\n");
-	printf("Your choose: ");
-	for (int i = 0; i < 1; i++)
-		scanf("%c", &letter);
-	distributor(letter);
+	while (1)
+	{
+		printf("Select your action.\n");
+		printf("1. Registrations.\n");
+		printf("2. Login.\n");
+		printf("3. Remove account.\n");
+		printf("4. About programm.\n");
+		printf("5. Exit.\n\n");
+		printf("Your choose: ");
+		for (int i = 0; i < 1; i++)
+			scanf("%c", &letter);
+		if (letter == '5')
+			break;
+		distributor(letter);
+	}
 	return 0;
 }
