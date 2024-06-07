@@ -48,13 +48,36 @@ void registrations(void)
 		}
 		for (int i = 0; i < size; i++)
 			fprintf(input, "%c", string[i]);
-		fclose(input);
 		printf("\nAccount successfully created.");
 	}
+	fclose(input);
 }
 
 void login(void)
 {
+	FILE *input;
+	int size = 0, count = 0;
+	char string[1000], ch, txt[4] = ".txt";
+	printf("Login: ");
+	while (scanf("%c", &ch))
+	{
+		if (ch == '\n')
+			count++;
+		if (count == 2)
+			break;
+		if (ch != '\n')
+			string[size++] = ch;
+	}
+	for (int i = 0; i < 4; i++)
+		string[size++] = txt[i];
+	input = fopen(string, "r");
+	if (input == NULL)
+		printf("No user with this login was found\n");
+	else
+	{
+		printf("Password: ");
+		
+	}
 }
 
 void distributor(char letter)
