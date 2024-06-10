@@ -1,4 +1,5 @@
-/*Написать только одну функцию, которая ставит в начало массива все четные элементы, а в конец – все нечетные. Не нарушайте порядок следования чисел между собой. Строго согласно прототипу:.
+/*Написать только одну функцию, которая ставит в начало массива все четные элементы, а в конец – все нечетные.
+Не нарушайте порядок следования чисел между собой. Строго согласно прототипу:.
 void sort_even_odd(int n, int a[])
 Формат входных данных
 Функцийя принмате на вход целые числа
@@ -16,20 +17,20 @@ void sort_even_odd(int n, int a[])
 
 #include <stdio.h>
 
-void sort_even_odd(int n, int a[]) 
+void sort_even_odd(int n, int a[])
 {
 	int arr1[n], arr2[n], arr1_size = 0, arr2_size = 0;
 	for (int i = 0; i < n; i++)
 	{
-		if(a[i] % 2 == 0)
+		if (a[i] % 2 == 0)
 			arr1[arr1_size++] = a[i];
-		if(a[i] % 2 != 0)
+		if (a[i] % 2 != 0)
 			arr2[arr2_size++] = a[i];
 	}
-	for(int i = 0; i < arr1_size; i++)
+	for (int i = 0; i < arr1_size; i++)
 		a[i] = arr1[i];
 	int k = 0;
-	for(int i = arr1_size; i < n; i++)
+	for (int i = arr1_size; i < n; i++)
 		a[i] = arr2[k++];
 	// for(int i = 0; i < n; i++)
 	// 	printf("%d ", a[i]);
