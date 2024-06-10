@@ -9,9 +9,7 @@ solution: Print 2 factor, and divide the number as much as possible. From i=3, i
 i divides number, print i and divide number by i.At last, print number directly if number is still large than 2.
 Note: if we get visited primer factor, we skip it.
 */
-
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 
 void FindPrimeFactors(unsigned int num)
 {
@@ -20,7 +18,7 @@ void FindPrimeFactors(unsigned int num)
 	while (num % 2 == 0)
 	{
 		if (pre != 2)
-			cout << "2 ";
+			printf("2 ");
 		num = num / 2;
 		pre = 2;
 	}
@@ -30,7 +28,7 @@ void FindPrimeFactors(unsigned int num)
 		while (num % i == 0)
 		{
 			if (pre != i)
-				cout << i << " ";
+				printf("%d ", i);
 			num = num / i;
 			pre = i;
 		}
@@ -39,7 +37,7 @@ void FindPrimeFactors(unsigned int num)
 	if (num > 2)
 	{
 		if (pre != num)
-			cout << num << " ";
+			printf("%d ", num);
 		pre = num;
 	}
 }
@@ -48,8 +46,8 @@ int main()
 {
 
 	unsigned int num;
-	cin >> num;
-	cout << "The primer factors of " << num << " are:" << endl;
+	scanf("%d", &num);
+	printf("The primer factors of %d are: ", num);
 	FindPrimeFactors(num);
 	return 0;
 }
