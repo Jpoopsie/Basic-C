@@ -22,7 +22,6 @@ void FindPrimeFactors(unsigned int num)
 		num = num / 2;
 		pre = 2;
 	}
-
 	for (unsigned int i = 3; i * i <= num; i = i + 2)
 	{
 		while (num % i == 0)
@@ -33,7 +32,6 @@ void FindPrimeFactors(unsigned int num)
 			pre = i;
 		}
 	}
-
 	if (num > 2)
 	{
 		if (pre != num)
