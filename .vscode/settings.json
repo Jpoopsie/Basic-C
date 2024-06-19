@@ -1,7 +1,7 @@
 {
 	"stm32-for-vscode.openOCDPath": false,
 	"stm32-for-vscode.makePath": false,
-	"stm32-for-vscode.armToolchainPath": false,
+	"stm32-for-vscode.armToolchainPath": "E:\\STM32CUBECLT_1.15.1\\GNU-TOOLS-FOR-STM32\\BIN",
 	"files.associations": {
 		"stdio.h": "c",
 		"random": "c",
